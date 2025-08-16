@@ -459,7 +459,9 @@ spec:
         - "/cloud_sql_proxy"
         - "-verbose={{ .Values.gke.cloudSQL.verbose}}"
         - "-instances={{ .Values.gke.cloudSQL.instanceName }}=tcp:3306"
+        {{- if .Values.gke.cloudSQL.autoIAMAuthn }}
         - "--auto-iam-authn"
+        {{- end }}
         resources:
           limits:
             cpu: 0.5 # 500Mhz
